@@ -9,7 +9,6 @@ export function setArticles(articles){
 		type : SET_ARTICLES,
 		articles
 	}
-
 }
 
 export function addNote(text,articleId){
