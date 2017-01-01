@@ -4,17 +4,18 @@ var Schema = mongoose.Schema;
 // schema for the articles collection
 var ArticleSchema = new Schema({
 	title:{
-		type: String,
-		required:true
+		type: String
 	} ,
-	link:{
-		type:String,
-		required:true
+	content:{
+		type: String
+	},
 
+	link:{
+		type:String
+		
 	} ,
-	note:[{
-		type: Schema.Types.ObjectId,
-		ref: 'Note'
+	notes:[{
+		type: String
 
 	}]
 });

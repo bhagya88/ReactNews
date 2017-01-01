@@ -12,8 +12,8 @@ var logger = require('morgan');
 var articleRouter = require('./routes/articleroute.js');
 
 
-var PORT = process.env.PORT || '3000';
-var mongoURI = process.env.MONGODB_URI || "mongodb://localhost/newscrape";
+var PORT = process.env.PORT || '8080';
+var mongoURI = process.env.MONGODB_URI || "mongodb://localhost/reactnews";
 
 mongoose.Promise = Promise;
 // Database configuration with mongoose
@@ -38,12 +38,6 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'));// override with POST having ?_method
 app.use(methodOverride('_method'));
 
-var exphbs = require('express-handlebars');
-
-// register handlebars
-app.engine('handlebars',exphbs({
-	defaultLayout: 'main'
-}));
 
 // middleware to log request to console
 app.use(logger('combined'));
