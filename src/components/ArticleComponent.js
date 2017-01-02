@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
-import './App.css';
 import SavedNotes from './SavedNotes';
 import NewNote from './NewNote';
+import { bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import 
+import { getArticles } from '../actions/articles_actions';
+import { next } from '../actions/current_actions';
 
-class Article extends Component {
+class ArticleComponent extends Component {
+
+  componentDidMount(){
+   console.log("AC com did mount");
+   this.props.getArticles();
+  }
+
+  handleNext(){
+    console.log("handlenext");
+    console.log(this);
+
+    this.props.next(this.props.articles);
+
+  }
+
   render() {
     return (
-      <div className="App">
+      <div>
         <div className="container">
           <div className="row">
             <div className="row"><h4 className="center">NEWSCRAPE</h4> </div>
               <div className="col s3">
-                <NewNote current ={this.props.current}/>
+                <NewNote current={this.props.current}/>
                 </div>
 
 
@@ -23,14 +38,14 @@ class Article extends Component {
                   <div className="card-content article-card">
                     <p><span className="card-title activator white-text text-darken-4 center">|| Article <span id="articleNum"></span>||</span></p>
                     
-                     <p id="title" className="center">{this.props.articles[this.props.current].content}</p>
+                    { this.props.articles.length ? <p id="title" className="center">{this.props.articles[this.props.current].title } </p> : <span/> }
                 
                     <p><a id="link" className="center"></a></p>
                    
 
                   </div>
                   <div className="card-image waves-effect waves-block waves-light center light-blue darken-4">
-                   <i id="next" className="material-icons small">label</i>
+                   <i onClick={this.handleNext.bind(this)}  className="material-icons small">label</i>
                   </div>
               </div>
             </div>
@@ -51,10 +66,25 @@ class Article extends Component {
   }
 }
 
+
+ArticleComponent.propTypes = {
+
+  articles: React.PropTypes.array.isRequired,
+  current: React.PropTypes.number.isRequired,
+  getArticles: React.PropTypes.func.isRequired,
+  next: React.PropTypes.func.isRequired
+}
+
 function mapStateToProps(state){
   return {
     articles: state.articles,
     current: state.current
   }
 }
-export default connect(mapStateToProps)(Article);
+
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ getArticles }, dispatch);
+// }
+
+
+export default connect(mapStateToProps,{ getArticles, next })(ArticleComponent);

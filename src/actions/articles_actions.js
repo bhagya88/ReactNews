@@ -4,7 +4,8 @@ export const DELETE_NOTE = 'DELETE_NOTE';
 export const DELETE_ALL_NOTES = 'DELETE_ALL_NOTES';
 
 export function setArticles(articles){
-
+	console.log("action: SET_ARTICLES");
+	console.log(articles);
 	return {
 		type : SET_ARTICLES,
 		articles
@@ -44,8 +45,20 @@ export function deleteAllNotes(articleId){
 
 }
 
-export function fetchArticles(){
+export function getArticles(){
+console.log("from getArticles");
+ return despatch =>{
+		fetch('/articles')
+		.then(res=>res.json())
+		.then(data=>despatch(setArticles(data)));
+	// var articles =  [
+	// {title:"title1",content:"content1",link:"link1",notes:["note11","note12"]},
+	// {title:"title2",content:"content2",link:"link2",notes:["note21","note22"]},
+	// {title:"title3",content:"content3",link:"link3",notes:["note31","note32"]}
+	// ];
 
+	// despatch(setArticles(articles));
+	}
 }
 
 export function postArticle(){

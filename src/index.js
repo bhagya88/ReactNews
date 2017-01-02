@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Article from './components/Article';
-import './index.css';
+import ArticleComponent from './components/ArticleComponent';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware} from 'redux';
+import rootReducer from './reducers/rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router';
 import thunk from 'redux-thunk';
 
-import  rootReducer from './reducers/rootReducer';
 
 
 const defaultState = {
@@ -20,13 +20,16 @@ const defaultState = {
 
 	current: 0
 };
-const store = createStore(rootReducer,defaultState);
-	// composeWithDevTools(applyMiddleware(thunk))
-	// );
+
+const store = createStore(rootReducer,// defaultState);
+	composeWithDevTools(applyMiddleware(thunk))
+	);
 
 ReactDOM.render(
+ <BrowserRouter>
   <Provider store={store} >
-  	<Article />
-  </Provider>,
+  	<ArticleComponent />
+  </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
