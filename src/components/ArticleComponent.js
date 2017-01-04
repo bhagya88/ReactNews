@@ -37,9 +37,9 @@ class ArticleComponent extends Component {
                    
 
                   </div>
-                  <div className="card-image waves-effect waves-block waves-light center light-blue darken-4">
-                   <i onClick={this.props.previous.bind(null, this.props.articles )}  className="material-icons small rotate180">label</i>
-                   <i onClick={this.props.next.bind(null, this.props.articles )}  className="material-icons small">label</i>
+                  <div className="card-image  center light-blue darken-4">
+                   <i onClick={this.props.previous.bind(null, this.props.articles )}  className="material-icons small waves-effect waves-block waves-light rotate180">label</i>
+                   <i onClick={this.props.next.bind(null, this.props.articles )}  className="material-icons small waves-effect waves-block waves-light">label</i>
                   </div>
               </div>
             </div>
