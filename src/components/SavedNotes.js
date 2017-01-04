@@ -14,13 +14,6 @@ class SavedNotes extends Component {
   }
 
 
-
-  // handleDeleteNote(noteId){
-
-  //   this.props.delNote(this.props.article._id, noteId );
-  // }
-
-
   render() {
   	var notes = [];
     if(this.props.article && this.props.article.notes.length){

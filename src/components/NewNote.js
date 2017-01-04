@@ -11,9 +11,9 @@ class NewNote extends Component {
     };
   }
 
-  componentWillRecieveProps(){
-    
-    this.setState({ text: ''});
+  componentWillReceiveProps(){
+   
+      this.setState({ text: ''});     
 
   }
 
