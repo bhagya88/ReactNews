@@ -48,7 +48,7 @@ export function deleteAllNotes(articleId){
 export function getArticles(){
 console.log("from getArticles");
  return despatch =>{
-		fetch('/articles')
+		fetch('/scrape')
 		.then(res=>res.json())
 		.then(data=>despatch(setArticles(data)));
 	

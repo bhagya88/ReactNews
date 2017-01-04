@@ -20,67 +20,65 @@ router.get("/", function(req, res) {
 
 // A GET request to scrape the echojs website
 router.get("/scrape", function(req, res) {
-   console.log("scrape request");
-   res.redirect("/articles");
-  // First, we grab the body of the html with request
-  // request("http://www.echojs.com/", function(error, response, html) {
-  //   // Then, we load that into cheerio and save it to $ for a shorthand selector
-  //   var $ = cheerio.load(html);
-  //   // Now, we grab every h2 within an article tag, and do the following:
-  //   $("article h2").each(function(i, element) {
+ console.log("scraping");
+    // First, we grab the body of the html with request
+  request("http://www.echojs.com/", function(error, response, html) {
+    if(error){
+      console.log(error);
+      res.redirect('/articles');
+    }
+    // Then, we load that into cheerio and save it to $ for a shorthand selector
+    var $ = cheerio.load(html);
+    // Now, we grab every h2 within an article tag, and do the following:
+    $("article h2").each(function(i, element) {
 
-  //     // Save an empty result object
-  //     var result = {};
+      // Save an empty result object
+      var result = {};
 
-  //     // Add the text and href of every link, and save them as properties of the result object
-  //     result.title = $(this).children("a").text();
-  //     result.link = $(this).children("a").attr("href");
-  //     result.notes=[];
+      // Add the text and href of every link, and save them as properties of the result object
+      result.title = $(this).children("a").text();
+      result.link = $(this).children("a").attr("href");
+      result.notes=[];
       
       
-  //     // Check if the article already exists
+      // Check if the article already exists
 
-  //     Article.find({where:{title: result.title}})
+      Article.find({where:{title: result.title}})
        
-  //      .exec(function(error, docs) {
-  //         // Log any errors
-  //         if (error) {
-  //           console.log(error);
-  //           res.send(error);
-  //         }
-  //         // Or send the doc to the browser as a json object
-  //         else {
+       .exec(function(error, docs) {
+          // Log any errors
+          if (error) {
+            console.log(error);
+          }
+          // Or send the doc to the browser as a json object
+          else {
 
-  //           if(!docs.length){
+            if(!docs.length){
 
-  //             // Using our Article model, create a new entry
-  //             // This effectively passes the result object to the entry (and the title and link)
+              // Using our Article model, create a new entry
+              // This effectively passes the result object to the entry (and the title and link)
         
-  //               var entry = new Article(result);
+                var entry = new Article(result);
 
-  //              // Now, save that entry to the db
-  //               entry.save(function(err, doc) {
-  //                   // Log any errors
-  //                   if (err) {
-  //                     console.log(err);
-  //                     res.send(err);
-  //                   }else { // Or log the doc
-  //                   console.log(doc);
-  //                    res.redirect('/articles')
-  //                   }
-  //               });
-  //           }else{
-  //             res.send("here");
-  //           }
-           
-  //         }
-  //       });
-  //   });
+               // Now, save that entry to the db
+                entry.save(function(err, doc) {
+                    // Log any errors
+                    if (err) {
+                      console.log(err);
+                    }else { // Or log the doc
+                    console.log(doc);
+                    }
+                });
+            }
+            
+          }
+        });
+    });
 
-  // });
+    res.redirect('/articles')
+  });
   
 });
-
 // This will get the articles we scraped from the mongoDB
 router.get("/articles", function(req, res) {
    console.log("articles request");
