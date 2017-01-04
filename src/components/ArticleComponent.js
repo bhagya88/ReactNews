@@ -3,7 +3,7 @@ import SavedNotes from './SavedNotes';
 import NewNote from './NewNote';
 import {connect} from 'react-redux';
 import { getArticles } from '../actions/articles_actions';
-import { next } from '../actions/current_actions';
+import { next, previous } from '../actions/current_actions';
 
 class ArticleComponent extends Component {
 
@@ -38,6 +38,7 @@ class ArticleComponent extends Component {
 
                   </div>
                   <div className="card-image waves-effect waves-block waves-light center light-blue darken-4">
+                   <i onClick={this.props.previous.bind(null, this.props.articles )}  className="material-icons small rotate180">label</i>
                    <i onClick={this.props.next.bind(null, this.props.articles )}  className="material-icons small">label</i>
                   </div>
               </div>
@@ -65,7 +66,8 @@ ArticleComponent.propTypes = {
   articles: React.PropTypes.array.isRequired,
   current: React.PropTypes.number.isRequired,
   getArticles: React.PropTypes.func.isRequired,
-  next: React.PropTypes.func.isRequired
+  next: React.PropTypes.func.isRequired,
+  previous: React.PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state){
@@ -75,4 +77,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps,{ getArticles, next })(ArticleComponent);
+export default connect(mapStateToProps,{ getArticles, next, previous })(ArticleComponent);

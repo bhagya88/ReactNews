@@ -1,15 +1,42 @@
 import { ADD_NOTE, SET_ARTICLES, DELETE_NOTE, DELETE_ALL_NOTES } from '../actions/articles_actions';
 export default function articles(state=[] , action={}){
+
+	var newState;
+
 	switch(action.type){
 
 		case ADD_NOTE :
-			return state;
+
+		    newState = state.map(function(article){
+
+		    	var newArticle = Object.assign({},article);
+
+		    	if(newArticle._id === action.id){
+		    	
+		    		newArticle.notes = article.notes.concat(action.text);
+		    	}
+
+		    	return newArticle;
+		    });
+
+
+
+
+		   console.log("from add new note");
+		   console.log(newState[0]);
+
+		   console.log("from add new note");
+		   console.log(action);
+
+
+			return newState;
+
 		case SET_ARTICLES:
 			console.log(action.articles);
 			return action.articles;
 		case DELETE_NOTE:
 
-		    var nextState = state.map(function(article){
+		    newState = state.map(function(article){
 
 		    	var newArticle = Object.assign({},article);
 		    	if(newArticle._id === action.id){
@@ -19,12 +46,12 @@ export default function articles(state=[] , action={}){
 		    	return newArticle;
 		    });
 
-			return nextState;
+			return newState;
 
 		
 		case DELETE_ALL_NOTES:
 
-		    var newState = state.map(function(article){
+		    newState = state.map(function(article){
 
 		    	var newArticle = Object.assign({},article);
 		    	if(newArticle._id === action.id){

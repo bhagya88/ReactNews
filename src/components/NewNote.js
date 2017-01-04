@@ -11,6 +11,12 @@ class NewNote extends Component {
     };
   }
 
+  componentWillRecieveProps(){
+    
+    this.setState({ text: ''});
+
+  }
+
   handleChange(e){
 
     this.setState({ [e.target.name] : e.target.value})
@@ -24,7 +30,7 @@ class NewNote extends Component {
       this.props.addNewNote(this.props.article._id, this.state.text)
     }
 
-
+    this.setState({ text: ''});
   }
 
 

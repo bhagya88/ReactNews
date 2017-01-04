@@ -9,6 +9,8 @@ class SavedNotes extends Component {
   handleDeleteAllNotes(){
 
     this.props.delAllNotes(this.props.article._id);
+ 
+
   }
 
 
@@ -23,7 +25,7 @@ class SavedNotes extends Component {
   	var notes = [];
     if(this.props.article && this.props.article.notes.length){
       notes = this.props.article.notes.map(function(ele,i){
-      return  (<p id="note" className="left cursiveFont" key={i}  >{ele} <button className="btn-flat transparent white-text"  onClick={this.props.delNote.bind(null, this.props.article._id, i)} ><span> &times; </span></button></p>)
+      return  (<p id="note" className="left cursiveFont center" key={i}  >{ele} <button className="btn-flat transparent white-text"  onClick={this.props.delNote.bind(null, this.props.article._id, i)} ><span> &times; </span></button></p>)
       },this);
     
     }

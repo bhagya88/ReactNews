@@ -12,7 +12,7 @@ export function setArticles(articles){
 	}
 }
 
-export function addNote(text,articleId){
+export function addNote(articleId,text){
 
 	return {
 		type : ADD_NOTE,
@@ -55,10 +55,6 @@ console.log("from getArticles");
 	}
 }
 
-export function postArticle(){
-
-}
-
 export function delNote(articleId,noteIndex){
 
 	return despatch =>{
@@ -89,13 +85,7 @@ export function addNewNote(articleId,text){
 
 	return despatch =>{
 
-		// var payload = {
-		//    text
-		// };
-
-		// var data = new FormData();
-		// data.append( "json", JSON.stringify( payload ) );
-
+		
 		console.log(articleId,text)
 
 		fetch('/articles/'+articleId, 
@@ -108,7 +98,7 @@ export function addNewNote(articleId,text){
 		  credentials: "same-origin"
     	})
 	
-		.then(data=>despatch(addNote(articleId)));
+		.then(data=>despatch(addNote(articleId, text)));
 		
 	}
 
