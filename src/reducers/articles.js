@@ -20,20 +20,12 @@ export default function articles(state=[] , action={}){
 		    });
 
 
-
-
-		   console.log("from add new note");
-		   console.log(newState[0]);
-
-		   console.log("from add new note");
-		   console.log(action);
-
-
 			return newState;
 
 		case SET_ARTICLES:
 			console.log(action.articles);
 			return action.articles;
+			
 		case DELETE_NOTE:
 
 		    newState = state.map(function(article){

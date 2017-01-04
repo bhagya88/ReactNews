@@ -27,10 +27,11 @@ class NewNote extends Component {
 
     if(this.state.text.length){
 
-      this.props.addNewNote(this.props.article._id, this.state.text)
+      this.props.addNewNote(this.props.article._id, this.state.text);
+      this.setState({ text: ''});
     }
 
-    this.setState({ text: ''});
+    
   }
 
 
