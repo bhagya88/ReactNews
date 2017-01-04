@@ -111,7 +111,7 @@ router.post("/articles/:id", function(req, res) {
           "_id": req.params.id
         }, {
           $push: {
-            "notes": req.body
+            "notes": req.body.text
           }
         })
       .exec(function(err, doc1) {
@@ -151,8 +151,15 @@ router.delete('/notes/:articleId/:noteIndex', function(req, res) {
      Article.findOne({ "_id": req.params.articleId })
     .exec(function(err1, doc1) {
 
-        var notes = doc1.notes;
-        notes.splice(parseInt(req.params.noteId),1);
+        var notes = doc1.notes.slice();
+        console.log(notes);
+        console.log(parseInt(req.params.noteIndex));
+
+        notes.splice(parseInt(req.params.noteIndex),1);
+        console.log("modified notes");
+        console.log(notes);
+
+       
 
         Article.findOneAndUpdate({ "_id": req.params.articleId }, {$set : {"notes": notes } })
          .exec(function(err2, doc2) {

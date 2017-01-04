@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SavedNotes from './SavedNotes';
 import NewNote from './NewNote';
-import { bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { getArticles } from '../actions/articles_actions';
 import { next } from '../actions/current_actions';
@@ -13,13 +12,7 @@ class ArticleComponent extends Component {
    this.props.getArticles();
   }
 
-  handleNext(){
-    console.log("handlenext");
-    console.log(this);
 
-    this.props.next(this.props.articles);
-
-  }
 
   render() {
     return (
@@ -45,13 +38,13 @@ class ArticleComponent extends Component {
 
                   </div>
                   <div className="card-image waves-effect waves-block waves-light center light-blue darken-4">
-                   <i onClick={this.handleNext.bind(this)}  className="material-icons small">label</i>
+                   <i onClick={this.props.next.bind(null, this.props.articles )}  className="material-icons small">label</i>
                   </div>
               </div>
             </div>
 
             <div className="col s3">
-              <SavedNotes article={this.props.articles[this.props.current]} current={this.props.current}/>
+              <SavedNotes />
              
             </div>
               
@@ -81,10 +74,5 @@ function mapStateToProps(state){
     current: state.current
   }
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ getArticles }, dispatch);
-// }
-
 
 export default connect(mapStateToProps,{ getArticles, next })(ArticleComponent);

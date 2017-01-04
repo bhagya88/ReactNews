@@ -35,6 +35,8 @@ app.use(bodyParser.urlencoded({
 	extended: false 
 }));
 
+app.use(bodyParser.json());
+
 app.use(express.static('public'));// override with POST having ?_method
 app.use(methodOverride('_method'));
 

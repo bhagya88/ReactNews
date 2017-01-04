@@ -51,13 +51,7 @@ console.log("from getArticles");
 		fetch('/articles')
 		.then(res=>res.json())
 		.then(data=>despatch(setArticles(data)));
-	// var articles =  [
-	// {title:"title1",content:"content1",link:"link1",notes:["note11","note12"]},
-	// {title:"title2",content:"content2",link:"link2",notes:["note21","note22"]},
-	// {title:"title3",content:"content3",link:"link3",notes:["note31","note32"]}
-	// ];
-
-	// despatch(setArticles(articles));
+	
 	}
 }
 
@@ -65,10 +59,57 @@ export function postArticle(){
 
 }
 
-export function delNote(){
+export function delNote(articleId,noteIndex){
+
+	return despatch =>{
+
+		fetch('/notes/'+articleId+ '/'+ noteIndex +'?_method=DELETE', { method: "POST" } )
+	
+		.then(data=>despatch(deleteNote(articleId,noteIndex)));
+		
+	}
 
 }
 
-export function delAllNotes(){
+export function delAllNotes(articleId){
+
+	return despatch =>{
+
+		fetch('/notes/'+articleId+'?_method=DELETE', { method: "POST" } )
+	
+		.then(data=>despatch(deleteAllNotes(articleId)));
+		
+	}
+
+}
+
+export function addNewNote(articleId,text){
+
+
+
+	return despatch =>{
+
+		// var payload = {
+		//    text
+		// };
+
+		// var data = new FormData();
+		// data.append( "json", JSON.stringify( payload ) );
+
+		console.log(articleId,text)
+
+		fetch('/articles/'+articleId, 
+		{   
+		  method: "POST",
+		  body: JSON.stringify({text}),
+		  headers: {
+		    "Content-Type": "application/json"
+		  },
+		  credentials: "same-origin"
+    	})
+	
+		.then(data=>despatch(addNote(articleId)));
+		
+	}
 
 }

@@ -1,14 +1,33 @@
 import React, { Component } from 'react';
 
+import {connect} from 'react-redux';
+import { delNote, delAllNotes } from '../actions/articles_actions';
+
 class SavedNotes extends Component {
+
+
+  handleDeleteAllNotes(){
+
+    this.props.delAllNotes(this.props.article._id);
+  }
+
+
+
+  // handleDeleteNote(noteId){
+
+  //   this.props.delNote(this.props.article._id, noteId );
+  // }
+
+
   render() {
   	var notes = [];
     if(this.props.article && this.props.article.notes.length){
-      notes = this.props.article.notes.map(function(ele){
-      return  (<p id="note" className="left cursiveFont">{ele}</p>)
-      });
+      notes = this.props.article.notes.map(function(ele,i){
+      return  (<p id="note" className="left cursiveFont" key={i}  >{ele} <button className="btn-flat transparent white-text"  onClick={this.props.delNote.bind(null, this.props.article._id, i)} ><span> &times; </span></button></p>)
+      },this);
     
     }
+
     
     return (
      <div className="card transparent ">
@@ -19,11 +38,28 @@ class SavedNotes extends Component {
 
                   </div>
                   <div className="card-image waves-effect waves-block waves-light center light-blue darken-4">
-                   <i id="delete" className="material-icons small">delete</i>
+                   <i id="delete" onClick={this.handleDeleteAllNotes.bind(this)} className="material-icons small">delete</i>
                   </div>
       </div>
     );
   }
 }
 
-export default SavedNotes;
+SavedNotes.propTypes = {
+
+  article: React.PropTypes.object,
+  current: React.PropTypes.number.isRequired,
+  delAllNotes: React.PropTypes.func.isRequired,
+  delNote: React.PropTypes.func.isRequired
+}
+
+function mapStateToProps(state){
+  return {
+    article: state.articles[state.current],
+    current: state.current
+  }
+}
+
+
+
+export default connect(mapStateToProps,{ delAllNotes, delNote })(SavedNotes);

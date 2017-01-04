@@ -8,9 +8,32 @@ export default function articles(state=[] , action={}){
 			console.log(action.articles);
 			return action.articles;
 		case DELETE_NOTE:
-			return state;
+
+		    var nextState = state.map(function(article){
+
+		    	var newArticle = Object.assign({},article);
+		    	if(newArticle._id === action.id){
+		    		newArticle.notes = [...article.notes.slice(0,action.i),...article.notes.splice(action.i+1)];
+		    	}
+
+		    	return newArticle;
+		    });
+
+			return nextState;
+
+		
 		case DELETE_ALL_NOTES:
-			return state;
+
+		    var newState = state.map(function(article){
+
+		    	var newArticle = Object.assign({},article);
+		    	if(newArticle._id === action.id){
+		    		newArticle.notes = [];
+		    	}
+
+		    	return newArticle;
+		    });
+			return newState;
 		default:
 			return state;
 	}
