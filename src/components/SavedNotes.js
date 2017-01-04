@@ -8,7 +8,9 @@ class SavedNotes extends Component {
 
   handleDeleteAllNotes(){
 
-    this.props.delAllNotes(this.props.article._id);
+    if(this.props.article.notes.length){
+      this.props.delAllNotes(this.props.article._id);
+    }
  
 
   }
