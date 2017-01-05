@@ -4,6 +4,14 @@ export const DELETE_NOTE = 'DELETE_NOTE';
 export const DELETE_ALL_NOTES = 'DELETE_ALL_NOTES';
 
 export function setArticles(articles){
+	
+	if( !articles.length ){
+		articles =  [
+	{title:"title1",content:"content1",link:"link1",notes:["note11","note12"]},
+	{title:"title2",content:"content2",link:"link2",notes:["note21","note22"]},
+	{title:"title3",content:"content3",link:"link3",notes:["note31","note32"]}
+	];
+}
 	console.log("action: SET_ARTICLES");
 	console.log(articles);
 	return {
