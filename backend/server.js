@@ -30,6 +30,7 @@ db.once('open',function(){
 
 var app = express();
 
+
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
 	extended: false 
