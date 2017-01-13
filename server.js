@@ -9,10 +9,10 @@ var request = require('request');
 var Promise = require('bluebird');
 var logger = require('morgan');
 
-var articleRouter = require('./routes/articleroute.js');
+var articleRouter = require('./api/routes/articleroute.js');
 
 
-var PORT = process.env.PORT || '8080';
+var PORT = process.env.PORT || '3000';
 var mongoURI = process.env.MONGODB_URI || "mongodb://localhost/reactnews";
 
 mongoose.Promise = Promise;
@@ -30,6 +30,7 @@ db.once('open',function(){
 
 var app = express();
 
+app.use(express.static('./build'));
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
@@ -45,9 +46,11 @@ app.use(methodOverride('_method'));
 // middleware to log request to console
 app.use(logger('combined'));
 
-// set the view engine
-app.set('view engine', 'handlebars');
 
+
+// app.get('/*', function (req, res) {
+//   res.sendFile(path.join(__dirname, '../build', 'index.html'));
+// });
 
 
 app.use('/',articleRouter);

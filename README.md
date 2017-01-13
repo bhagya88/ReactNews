@@ -8,9 +8,9 @@ This is a full stack web app that lets users leave comments on the latest news. 
 
 ### Technologies used
 
-* Node.js, Express,  Express handlebars, Cheerio, Request, Body Parser, Morgan
+* Node.js, Express, Body Parser, Morgan
 * MongoDB, Mongoose
-* Jquery, Javascript, AJAX, HTML5, CSS3
+* React, Redux, Thunk
 * React Developer Tools, Redux Developer Tools
 * Web scraping
 

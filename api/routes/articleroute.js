@@ -13,10 +13,10 @@ mongoose.Promise = Promise;
 
 
 // home page
-router.get("/", function(req, res) {
-  console.log("root request");
-  res.redirect("/scrape");
-});
+// router.get("/", function(req, res) {
+//   console.log("root request");
+//   res.sendFile('index.html');
+// });
 
 // A GET request to scrape the echojs website
 router.get("/scrape", function(req, res) {

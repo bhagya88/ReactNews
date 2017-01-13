@@ -1,27 +1,45 @@
 {
-  "name": "ReactReduxNews",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "react-scripts": "0.8.4"
+  "name": "reactnews",
+  "version": "1.0.0",
+  "description": "### Overview This is a full stack web app that lets users leave comments on the latest news. The articles are web scraped from http://www.echojs.com",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "webpack -w"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhagya88/ReactNews.git"
+  },
+  "author": "bhagya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhagya88/ReactNews/issues"
+  },
+  "homepage": "https://github.com/bhagya88/ReactNews#readme",
   "dependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-redux": "^5.0.1",
-    "react-router": "^4.0.0-alpha.6",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
+    "express": "^4.14.0",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.6",
+    "morgan": "^1.7.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^1.0.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "request": "^2.79.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  
-  //"proxy": "http://localhost:8080"
-
-  "proxy":"https://reactreduxnewsapp.herokuapp.com"
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "webpack": "^1.14.0"
+  }
 }
+-
