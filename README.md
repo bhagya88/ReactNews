@@ -1,16 +1,16 @@
 # ReactNews
 
 ### Overview
-This is a full stack web app that lets users leave comments on the latest news. The articles are web scraped from http://www.echojs.com
+This is a full stack web app that lets users write notes while reading the articles. The articles are web scraped from http://www.echojs.com.
 
 ### Demo
-[Click to view Demo](https://obscure-ravine-46220.herokuapp.com/)
+[Click to view Demo](https://react-news.herokuapp.com/)
 
 ### Technologies used
 
 * Node.js, Express, Body Parser, Morgan
 * MongoDB, Mongoose
-* React, Redux, Thunk
+* React, Redux, React-Redux,Redux-Thunk, fetch
 * React Developer Tools, Redux Developer Tools
 * Web scraping
 
