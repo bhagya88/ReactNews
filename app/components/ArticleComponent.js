@@ -19,7 +19,7 @@ class ArticleComponent extends Component {
       <div>
         <div className="container">
           <div className="row">
-            <div className="row"><h4 className="center">NEWSCRAPE</h4> </div>
+            <div className="row"><h4 className="center">REACT NEWS</h4> </div>
               <div className="col s3">
                 <NewNote current={this.props.current}/>
                 </div>
